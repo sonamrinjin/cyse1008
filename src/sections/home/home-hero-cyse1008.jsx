@@ -1,23 +1,70 @@
 import React, { useState } from 'react';
-import { Box, Button } from '@mui/material';
+import { m } from 'framer-motion';
+import { Box, Button, Stack } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+
+import { textGradient } from 'src/theme/styles';
+
 import { CustomComponent } from './components/CustomComponent';
+import { ModularExponentiation } from './components/modular-exponentiation';
+import { ExtendedEuclideanAlgorithm } from './components/extended-euclidean-algorithm';
 
-
+const lgKey = 'lg';
 
 export function HomeHeroCYSE1008() {
-  const [count, setCount] = useState(0);  // useState to track the click count
+  const theme = useTheme();
+  const [count, setCount] = useState(0);  // Preserve counter logic
 
   return (
-    <Box sx={{ textAlign: 'center', p: 3, bgcolor: 'primary.light', borderRadius: 2 }}>
-      <h2>MY STORE TITLE</h2>
-      <CustomComponent />  {/* Display the CustomComponent */}
+    <Stack alignItems="center" spacing={2.5}>
+      <Box
+        component="h1"
+        display="flex"
+        flexWrap="wrap"
+        justifyContent="center"
+        sx={{
+          ...theme.typography.h2,
+          my: 0,
+          mx: 'auto',
+          maxWidth: 680,
+          fontFamily: theme.typography.fontSecondaryFamily,
+          [theme.breakpoints.up(lgKey)]: { fontSize: 72, lineHeight: '90px' },
+        }}
+      >
+        <Box
+          component={m.span}
+          animate={{ backgroundPosition: '200% center' }}
+          transition={{
+            duration: 20,
+            ease: 'linear',
+            repeat: Infinity,
+            repeatType: 'reverse',
+          }}
+          sx={{
+            ...textGradient(
+              `300deg, ${theme.vars.palette.primary.main} 0%, ${theme.vars.palette.warning.main} 25%, ${theme.vars.palette.primary.main} 50%, ${theme.vars.palette.warning.main} 75%, ${theme.vars.palette.primary.main} 100%`
+            ),
+            backgroundSize: '400%',
+            ml: { xs: 0.75, md: 1, xl: 1.5 },
+          }}
+        >
+          Welcome to Quilt
+        </Box>
+      </Box>
+
+      {/* Keep new cryptography components */}
+      <ExtendedEuclideanAlgorithm />
+      <ModularExponentiation />
+
+      {/* Reintroduce CustomComponent and counter from assignment5 */}
+      <CustomComponent />
       <Button
         variant="contained"
         color="primary"
-        onClick={() => setCount(count + 1)}  // Increment count when button is clicked
+        onClick={() => setCount(count + 1)}
       >
         Click Me {count}
       </Button>
-    </Box>
+    </Stack>
   );
 }
