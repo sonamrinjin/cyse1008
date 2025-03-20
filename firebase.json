@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "source": ".next",
+    "source": ".",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "frameworksBackend": {
       "region": "us-central1"
@@ -20,7 +20,7 @@
       "port": 5001
     },
     "firestore": {
-      "port": 8080
+      "port": 8081
     },
     "hosting": {
       "port": 5000
@@ -34,9 +34,6 @@
     "singleProjectMode": true,
     "auth": {
       "port": 9099
-    },
-    "pubsub": {
-      "port": 8085
     }
   },
   "firestore": {
